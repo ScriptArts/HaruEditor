@@ -45,3 +45,9 @@ C:\Users\ScriptArtsDEV\Documents\GitHub\HaruEditor\HaruEditor\bin\Debug\Dragablz
 C:\Users\ScriptArtsDEV\Documents\GitHub\HaruEditor\HaruEditor\bin\Debug\Dragablz.xml
 C:\Users\ScriptArtsDEV\Documents\GitHub\HaruEditor\HaruEditor\obj\Debug\View\Give\GiveControl.g.cs
 C:\Users\ScriptArtsDEV\Documents\GitHub\HaruEditor\HaruEditor\obj\Debug\View\Give\GiveControl.baml
+C:\Users\ScriptArtsDEV\Documents\GitHub\HaruEditor\HaruEditor\obj\Debug\View\Summon\SummonControl.g.cs
+C:\Users\ScriptArtsDEV\Documents\GitHub\HaruEditor\HaruEditor\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\ScriptArtsDEV\Documents\GitHub\HaruEditor\HaruEditor\bin\Debug\OrangeNBT.Data.dll
+C:\Users\ScriptArtsDEV\Documents\GitHub\HaruEditor\HaruEditor\bin\Debug\OrangeNBT.dll
+C:\Users\ScriptArtsDEV\Documents\GitHub\HaruEditor\HaruEditor\bin\Debug\OrangeNBT.World.dll
+C:\Users\ScriptArtsDEV\Documents\GitHub\HaruEditor\HaruEditor\obj\Debug\View\Summon\SummonControl.baml

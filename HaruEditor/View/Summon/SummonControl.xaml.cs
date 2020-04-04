@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HaruEditor.Model.Common.Entities;
+using OrangeNBT.NBT;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,23 @@ namespace HaruEditor.View.Summon
     /// </summary>
     public partial class SummonControl : UserControl
     {
+        private ViewModel.Summon.SummonViewModel viewModel = new ViewModel.Summon.SummonViewModel();
+
         public SummonControl()
         {
             InitializeComponent();
+            this.DataContext = viewModel;
+
+            Creeper creeper = new Creeper();
+            creeper.Id = new TagString("id", "creeper");
+            viewModel.Entities.Add(creeper);
+            viewModel.Entities.Add(creeper);
+            viewModel.Entities.Add(creeper);
+            viewModel.Entities.Add(creeper);
+            viewModel.Entities.Add(creeper);
+            viewModel.Entities.Add(creeper);
+            viewModel.Entities.Add(creeper);
+            viewModel.Entities.Add(creeper);
         }
     }
 }

@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace HaruEditor.ViewModel.Summon
 {
-    class SummonViewModel : INotifyPropertyChanged
+    public class SummonViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public List<int> Entities { get; } = new List<int>();
+        public List<Entity> Entities { get; } = new List<Entity>();
 
         public SummonViewModel()
         {
-            Creeper creeper = new Creeper();
+
         }
     }
 }

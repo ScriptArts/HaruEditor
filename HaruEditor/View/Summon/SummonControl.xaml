@@ -4,13 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HaruEditor.View.Summon"
+             xmlns:viemodel="clr-namespace:HaruEditor.ViewModel.Summon"
+             xmlns:model="clr-namespace:HaruEditor.Model.Common.Entities"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              Background="{DynamicResource MaterialDesignPaper}"
              TextElement.FontWeight="Medium"
              TextElement.FontSize="14"
              FontFamily="{materialDesign:MaterialDesignFont}"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="768" d:DesignWidth="1024">
     <Grid Margin="10,10,10,10">
         <Grid.RowDefinitions>
@@ -20,11 +22,36 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="100"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
-        
+
+        <Grid Grid.Row="0" Grid.RowSpan="3" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Border
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                BorderBrush="#ECEFF1"
+                BorderThickness="1"></Border>
+            <TextBlock Grid.Row="0" FontSize="11" Margin="5, 2, 0, 0">召喚リスト</TextBlock>
+            <TreeView
+                Grid.Row="1"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                ItemsSource="{Binding Entities}">
+                <TreeView.Resources>
+                    <HierarchicalDataTemplate
+                    DataType="{x:Type model:Entity}">
+                        <TextBlock Text="{Binding Id.Value}"/>
+                    </HierarchicalDataTemplate>
+                </TreeView.Resources>
+            </TreeView>
+        </Grid>
     </Grid>
 </UserControl>

@@ -1,5 +1,6 @@
 ﻿using HaruEditor.Common;
 using HaruEditor.View.Give;
+using HaruEditor.View.Summon;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -22,7 +23,7 @@ namespace HaruEditor
 
         private void Summon_Button_Click(object sender, RoutedEventArgs e)
         {
-            AddTabItem("Summon", new GiveControl());
+            AddTabItem("Summon", new SummonControl());
         }
 
         private void SetBlock_Button_Click(object sender, RoutedEventArgs e)
