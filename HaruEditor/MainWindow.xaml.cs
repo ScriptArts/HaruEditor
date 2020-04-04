@@ -1,4 +1,5 @@
-﻿using HaruEditor.View.Give;
+﻿using HaruEditor.Common;
+using HaruEditor.View.Give;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -29,6 +30,25 @@ namespace HaruEditor
             AddTabItem("SetBlock", new GiveControl());
         }
 
+        private void RemoveTab_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (TabControl.SelectedIndex >= 0)
+            {
+                var result = MessageBox.Show("タブを削除してよろしいですか？",
+                    HaruEditorConstant.APPLICATION_NAME, MessageBoxButton.YesNo, MessageBoxImage.Information);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    TabControl.Items.Remove(TabControl.SelectedItem);
+                }
+            } 
+            else
+            {
+                MessageBox.Show("削除するタブが選択されていません", 
+                    HaruEditorConstant.APPLICATION_NAME, MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
         private void AddTabItem(string header, Control control)
         {
             var tabItem = new TabItem()
@@ -37,7 +57,7 @@ namespace HaruEditor
                 Content = control
             };
             tabItem.IsSelected = true;
-            tabControl.Items.Add(tabItem);
+            TabControl.Items.Add(tabItem);
         }
     }
 }

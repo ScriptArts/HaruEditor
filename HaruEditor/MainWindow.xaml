@@ -24,7 +24,7 @@
         </Grid.ColumnDefinitions>
 
         <dockablz:Layout Grid.Row="0">
-            <dragablz:TabablzControl FixedHeaderCount="1" ConsolidateOrphanedItems="True" x:Name="tabControl">
+            <dragablz:TabablzControl FixedHeaderCount="1" ConsolidateOrphanedItems="True" x:Name="TabControl">
                 <dragablz:TabablzControl.InterTabController>
                     <dragablz:InterTabController />
                 </dragablz:TabablzControl.InterTabController>
@@ -66,6 +66,17 @@
                     ToolTip="SetBlockコマンドの生成タブを追加します"
                     Click="SetBlock_Button_Click">
                     SetBlock
+                </Button>
+                <Button
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    ToolTip="削除"
+                    Click="RemoveTab_Button_Click">
+                    <Path
+                        Data="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"
+                        Stretch="Uniform"
+                        Width="15"
+                        Height="15"
+                        Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}" />
                 </Button>
             </StackPanel>
         </materialDesign:PopupBox>
