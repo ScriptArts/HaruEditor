@@ -49,6 +49,15 @@
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
+    <Reference Include="OrangeNBT">
+      <HintPath>..\Library\OrangeNBT.dll</HintPath>
+    </Reference>
+    <Reference Include="OrangeNBT.Data">
+      <HintPath>..\Library\OrangeNBT.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="OrangeNBT.World">
+      <HintPath>..\Library\OrangeNBT.World.dll</HintPath>
+    </Reference>
     <Reference Include="Prism, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.7.2.0.1422\lib\net45\Prism.dll</HintPath>
     </Reference>
@@ -98,10 +107,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\HaruEditorConstant.cs" />
-    <Compile Include="Model\Common\NumericValue.cs" />
+    <Compile Include="Model\Common\Entities\Creeper.cs" />
+    <Compile Include="Model\Common\Entities\Entity.cs" />
+    <Compile Include="Model\Common\Entities\Mob.cs" />
     <Compile Include="ViewModel\Give\GiveViewModel.cs" />
+    <Compile Include="ViewModel\Summon\SummonViewModel.cs" />
     <Compile Include="View\Give\GiveControl.xaml.cs">
       <DependentUpon>GiveControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Summon\SummonControl.xaml.cs">
+      <DependentUpon>SummonControl.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -116,6 +131,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Give\GiveControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Summon\SummonControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -149,6 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\Give\" />
+    <Folder Include="Model\Summon\" />
     <Folder Include="ViewModel\Common\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
