@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HaruEditor.View.Give;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace HaruEditor
 {
@@ -27,16 +16,17 @@ namespace HaruEditor
 
         private void Give_Button_Click(object sender, RoutedEventArgs e)
         {
+            AddTabItem("Give", new GiveControl());
         }
 
         private void Summon_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            AddTabItem("Summon", new GiveControl());
         }
 
         private void SetBlock_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            AddTabItem("SetBlock", new GiveControl());
         }
 
         private void AddTabItem(string header, Control control)
@@ -46,7 +36,8 @@ namespace HaruEditor
                 Header = header,
                 Content = control
             };
-            tabControl.AddToSource(tabItem);
+            tabItem.IsSelected = true;
+            tabControl.Items.Add(tabItem);
         }
     }
 }

@@ -43,3 +43,5 @@ C:\Users\ScriptArtsDEV\Documents\GitHub\HaruEditor\HaruEditor\bin\Debug\System.V
 C:\Users\ScriptArtsDEV\Documents\GitHub\HaruEditor\HaruEditor\bin\Debug\Dragablz.dll
 C:\Users\ScriptArtsDEV\Documents\GitHub\HaruEditor\HaruEditor\bin\Debug\Dragablz.pdb
 C:\Users\ScriptArtsDEV\Documents\GitHub\HaruEditor\HaruEditor\bin\Debug\Dragablz.xml
+C:\Users\ScriptArtsDEV\Documents\GitHub\HaruEditor\HaruEditor\obj\Debug\View\Give\GiveControl.g.cs
+C:\Users\ScriptArtsDEV\Documents\GitHub\HaruEditor\HaruEditor\obj\Debug\View\Give\GiveControl.baml

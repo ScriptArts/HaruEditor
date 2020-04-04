@@ -23,25 +23,11 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <!--
-        <materialDesign:ColorZone
-            Mode="PrimaryDark"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            materialDesign:ShadowAssist.ShadowDepth="Depth3">
-            <StackPanel Orientation="Horizontal">
-                <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" Height="30" Width="30" Margin="10 0 0 0"/>
-                <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">ハルの総合コマンドエディタ</TextBlock>
-            </StackPanel>
-        </materialDesign:ColorZone>
-        -->
-
         <dockablz:Layout Grid.Row="0">
             <dragablz:TabablzControl FixedHeaderCount="1" ConsolidateOrphanedItems="True" x:Name="tabControl">
-                <dragablz:TabablzControl.InterTabController >
+                <dragablz:TabablzControl.InterTabController>
                     <dragablz:InterTabController />
                 </dragablz:TabablzControl.InterTabController>
-
             </dragablz:TabablzControl>
         </dockablz:Layout>
 
@@ -54,6 +40,9 @@
             Margin="0 0 10 10"
             Height="50"
             Width="50"
+            Foreground="#FFFFFF"
+            Background="#34515E"
+            BorderBrush="#34515E"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom">
             <StackPanel Orientation="Horizontal">
