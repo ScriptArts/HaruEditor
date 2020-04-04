@@ -11,11 +11,11 @@ namespace HaruEditor.ViewModel.Give
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public IList<int> UnsignedByteList { get; }
+        public List<int> UnsignedFloatList { get; }
 
         public GiveViewModel()
         {
-            UnsignedByteList = new List<int>(Enumerable.Range(0, 128));
+            UnsignedFloatList = new List<int>(Enumerable.Range(0, 128));
         }
     }
 }

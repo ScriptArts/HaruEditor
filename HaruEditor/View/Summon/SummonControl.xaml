@@ -19,39 +19,154 @@
             <RowDefinition Height="45"/>
             <RowDefinition Height="45"/>
             <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"/>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="200"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0" Grid.RowSpan="3" Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20"/>
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Border
+        <Border
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Grid.Row="0"
-                Grid.RowSpan="2"
+                Grid.RowSpan="4"
+                Margin="0, 5, 0, 0"
                 BorderBrush="#ECEFF1"
                 BorderThickness="1"></Border>
-            <TextBlock Grid.Row="0" FontSize="11" Margin="5, 2, 0, 0">召喚リスト</TextBlock>
-            <TreeView
-                Grid.Row="1"
+        <TextBlock 
+                Grid.Row="0" 
+                FontSize="11" 
+                Margin="10, 0, 0, 0" 
+                Width="50"
+                HorizontalAlignment="Left"
+                Background="{DynamicResource MaterialDesignPaper}">召喚リスト</TextBlock>
+        <TreeView
+            Grid.Row="0"
+            Grid.RowSpan="4"
+            Grid.Column="0"
+            Margin="1, 15, 85, 1"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch"
+            ItemsSource="{Binding Entities}">
+            <TreeView.Resources>
+                <HierarchicalDataTemplate
+                    DataType="{x:Type model:Entity}">
+                    <TextBlock Text="{Binding Id.Value}" Height="15"/>
+                </HierarchicalDataTemplate>
+            </TreeView.Resources>
+        </TreeView>
+        <Button
+            Content="追加"
+            Grid.Row="0"
+            FontSize="13"
+            Width="70"
+            Height="30"
+            Margin="10, 5, 10, 0"
+            HorizontalAlignment="Right"
+            Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+            ToolTip="MaterialDesignFlatDarkButton"/>
+        <Button
+            Content="削除"
+            Grid.Row="1"
+            FontSize="13"
+            Width="70"
+            Height="30"
+            Margin="10, 5, 10, 0"
+            HorizontalAlignment="Right"
+            Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+            ToolTip="MaterialDesignFlatDarkButton"/>
+        <Button
+            Content="上書き"
+            Grid.Row="2"
+            FontSize="13"
+            Width="70"
+            Height="30"
+            Margin="10, 5, 10, 0"
+            HorizontalAlignment="Right"
+            Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+            ToolTip="MaterialDesignFlatDarkButton"/>
+        <Button
+            Content="読込"
+            Grid.Row="3"
+            FontSize="13"
+            Width="70"
+            Height="30"
+            Margin="10, 5, 10, 0"
+            HorizontalAlignment="Right"
+            Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+            ToolTip="MaterialDesignFlatDarkButton"/>
+
+        <StackPanel Grid.Row="4" Margin="0, 5, 0, 0">
+            <TextBox
+                x:Name="CustomName"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Stretch"
+                materialDesign:HintAssist.Hint="エンティティに名前を付ける"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <CheckBox
+                Margin="0, 5, 0, 0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Style="{StaticResource MaterialDesignLightCheckBox}"
+                Content="名前を常に表示する" />
+            <CheckBox
+                Margin="0, 5, 0, 0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Style="{StaticResource MaterialDesignLightCheckBox}"
+                Content="地面に接している" />
+            <CheckBox
+                Margin="0, 5, 0, 0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Style="{StaticResource MaterialDesignLightCheckBox}"
+                Content="重力の影響を受けなくする" />
+            <CheckBox
+                Margin="0, 5, 0, 0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Style="{StaticResource MaterialDesignLightCheckBox}"
+                Content="無敵化" />
+            <CheckBox
+                Margin="0, 5, 0, 0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Style="{StaticResource MaterialDesignLightCheckBox}"
+                Content="無音化" />
+            <CheckBox
+                Margin="0, 5, 0, 0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Style="{StaticResource MaterialDesignLightCheckBox}"
+                Content="発光する" />
+
+            <ComboBox
                 VerticalAlignment="Stretch"
                 HorizontalAlignment="Stretch"
-                ItemsSource="{Binding Entities}">
-                <TreeView.Resources>
-                    <HierarchicalDataTemplate
-                    DataType="{x:Type model:Entity}">
-                        <TextBlock Text="{Binding Id.Value}"/>
-                    </HierarchicalDataTemplate>
-                </TreeView.Resources>
-            </TreeView>
-        </Grid>
+                materialDesign:HintAssist.Hint="MOBの体力"
+                ItemsSource="{Binding UnsignedByteList}"
+                Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+            <CheckBox
+                Margin="0, 5, 0, 0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Style="{StaticResource MaterialDesignLightCheckBox}"
+                Content="左利き" />
+            <TextBox
+                x:Name="LootTable"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Stretch"
+                materialDesign:HintAssist.Hint="ルートテーブル"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        </StackPanel>
     </Grid>
 </UserControl>
