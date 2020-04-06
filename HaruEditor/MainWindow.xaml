@@ -4,9 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HaruEditor"
+        xmlns:prism="http://prismlibrary.com/"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
         xmlns:dockablz="clr-namespace:Dragablz.Dockablz;assembly=Dragablz"
+        prism:ViewModelLocator.AutoWireViewModel="True"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontWeight="Medium"
@@ -14,16 +16,13 @@
         FontFamily="{materialDesign:MaterialDesignFont}"
         mc:Ignorable="d"
         Title="ハルの総合コマンドエディタ"
-        Height="768" Width="1024">
+        Height="768" Width="1024"
+        Style="{StaticResource WindowStyle}">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="30" UseAeroCaptionButtons="False"/>
+    </WindowChrome.WindowChrome>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-
-        <dockablz:Layout Grid.Row="0">
+        <dockablz:Layout>
             <dragablz:TabablzControl FixedHeaderCount="1" ConsolidateOrphanedItems="True" x:Name="TabControl">
                 <dragablz:TabablzControl.InterTabController>
                     <dragablz:InterTabController />
@@ -32,7 +31,6 @@
         </dockablz:Layout>
 
         <materialDesign:PopupBox
-            Grid.Row="0"
             Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
             PlacementMode="LeftAndAlignMiddles"
             UnfurlOrientation="Horizontal"

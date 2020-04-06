@@ -1,4 +1,8 @@
-﻿using System;
+﻿using HaruEditor.ViewModel.Common;
+using Prism.Ioc;
+using Prism.Mvvm;
+using Prism.Unity;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -11,7 +15,17 @@ namespace HaruEditor
     /// <summary>
     /// App.xaml の相互作用ロジック
     /// </summary>
-    public partial class App : Application
+    public partial class App : PrismApplication
     {
+        protected override Window CreateShell()
+        {
+            return Container.Resolve<MainWindow>();
+        }
+
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+            base.ConfigureViewModelLocator();
+            ViewModelLocationProvider.Register<MainWindow, MainWindowViewModel>();
+        }
     }
 }
