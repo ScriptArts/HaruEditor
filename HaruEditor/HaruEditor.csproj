@@ -135,6 +135,9 @@
     <Compile Include="View\Give\GiveControl.xaml.cs">
       <DependentUpon>GiveControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\JsonEditor\JsonEditorWindow.xaml.cs">
+      <DependentUpon>JsonEditorWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Summon\SummonControl.xaml.cs">
       <DependentUpon>SummonControl.xaml</DependentUpon>
     </Compile>
@@ -155,6 +158,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Give\GiveControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\JsonEditor\JsonEditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
