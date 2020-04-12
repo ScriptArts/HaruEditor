@@ -23,7 +23,7 @@
     </WindowChrome.WindowChrome>
     <Grid>
         <dockablz:Layout>
-            <dragablz:TabablzControl FixedHeaderCount="1" ConsolidateOrphanedItems="True" x:Name="TabControl">
+            <dragablz:TabablzControl ConsolidateOrphanedItems="True" x:Name="TabControl">
                 <dragablz:TabablzControl.InterTabController>
                     <dragablz:InterTabController />
                 </dragablz:TabablzControl.InterTabController>

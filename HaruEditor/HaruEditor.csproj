@@ -125,6 +125,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Actions\WindowCloseAction.cs" />
+    <Compile Include="Actions\WindowMaximizeAction.cs" />
+    <Compile Include="Actions\WindowMinimizeAction.cs" />
     <Compile Include="Common\HaruEditorConstant.cs" />
     <Compile Include="Model\Common\Entities\Creeper.cs" />
     <Compile Include="Model\Common\Entities\Entity.cs" />
