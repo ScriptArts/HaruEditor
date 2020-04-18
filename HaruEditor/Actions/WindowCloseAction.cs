@@ -5,16 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Interactivity;
+using Microsoft.Xaml.Behaviors;
 
 namespace HaruEditor.Actions
 {
-    public class WindowCloseAction : TriggerAction<DependencyObject>
+    public class WindowCloseAction : TriggerAction<Button>
     {
         protected override void Invoke(object parameter)
         {
-            var btn = (parameter as RoutedEventArgs).Source as Button;
-            var window = Window.GetWindow(btn);
+            var window = Window.GetWindow(AssociatedObject);
 
             window.Close();
         }

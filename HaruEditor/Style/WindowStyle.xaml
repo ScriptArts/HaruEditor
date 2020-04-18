@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:action="clr-namespace:HaruEditor.Actions"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     <Style x:Key="WindowStyle" TargetType="Window">
@@ -61,7 +61,7 @@
                                             </i:Interaction.Triggers>
                                             <Path
                                                 Data="M0,0 H12 V12 H0 Z"
-                                                Stroke="Red"
+                                                Stroke="AliceBlue"
                                                 StrokeThickness="2"
                                                 RenderOptions.EdgeMode="Aliased"/>
                                         </Button>
@@ -93,29 +93,9 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="WindowState" Value="Normal">
                             <Setter TargetName="border" Property="BorderThickness" Value="1"/>
-                            <Setter TargetName="maximize" Property="Content">
-                                <Setter.Value>
-                                    <Path
-                                        Data="M0,0 H12 V12 H0 Z"
-                                        Stroke="AliceBlue"
-                                        StrokeThickness="2"
-                                        RenderOptions.EdgeMode="Aliased"/>
-                                </Setter.Value>
-                            </Setter>
                         </Trigger>
                         <Trigger Property="WindowState" Value="Maximized">
                             <Setter TargetName="border" Property="BorderThickness" Value="7"/>
-                            <Setter TargetName="maximize" Property="Content">
-                                <Setter.Value>
-                                    <Path
-                                        Data="M0,4 H8 V12 H0 Z M4,2 V0 H12 V8 H8"
-                                        Stroke="AliceBlue"
-                                        StrokeThickness="2"
-                                        StrokeStartLineCap="Square"
-                                        StrokeEndLineCap="Square"
-                                        RenderOptions.EdgeMode="Aliased"/>
-                                </Setter.Value>
-                            </Setter>
                         </Trigger>
                         <Trigger Property="IsActive" Value="True">
                             <Setter TargetName="border" Property="BorderBrush" Value="gray"/>
