@@ -126,6 +126,9 @@
     <Compile Include="Actions\WindowMaximizeAction.cs" />
     <Compile Include="Actions\WindowMinimizeAction.cs" />
     <Compile Include="Common\HaruEditorConstant.cs" />
+    <Compile Include="Model\Common\Builtin.cs" />
+    <Compile Include="Model\Common\Plugin.cs" />
+    <Compile Include="Common\FeaturesManager.cs" />
     <Compile Include="Model\Common\Entities\Creeper.cs" />
     <Compile Include="Model\Common\Entities\Entity.cs" />
     <Compile Include="Model\Common\Entities\Mob.cs" />
@@ -200,6 +203,12 @@
   <ItemGroup>
     <Folder Include="Model\Give\" />
     <Folder Include="Model\Summon\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HaruEditorLib\HaruEditorLib.csproj">
+      <Project>{84e63a5c-d9ea-40ab-91cc-01f37befae01}</Project>
+      <Name>HaruEditorLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.1.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.1.0\build\MaterialDesignThemes.targets')" />

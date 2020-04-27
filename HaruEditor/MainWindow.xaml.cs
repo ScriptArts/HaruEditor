@@ -1,6 +1,7 @@
 ﻿using HaruEditor.Common;
-using HaruEditor.View.Give;
-using HaruEditor.View.Summon;
+using HaruEditor.ViewModel.Common;
+using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -14,51 +15,63 @@ namespace HaruEditor
         public MainWindow()
         {
             InitializeComponent();
+
+            var vm = DataContext as MainWindowViewModel;
+            SetBuiltIns(vm);
+            SetPlugins(vm);
         }
 
-        private void Give_Button_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// 組み込み機能
+        /// </summary>
+        /// <param name="vm"></param>
+        private void SetBuiltIns(MainWindowViewModel vm)
         {
-            AddTabItem("Give", new GiveControl());
-        }
-
-        private void Summon_Button_Click(object sender, RoutedEventArgs e)
-        {
-            AddTabItem("Summon", new SummonControl());
-        }
-
-        private void SetBlock_Button_Click(object sender, RoutedEventArgs e)
-        {
-            AddTabItem("SetBlock", new GiveControl());
-        }
-
-        private void RemoveTab_Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (TabControl.SelectedIndex >= 0)
-            {
-                var result = MessageBox.Show("タブを削除してよろしいですか？",
-                    HaruEditorConstant.APPLICATION_NAME, MessageBoxButton.YesNo, MessageBoxImage.Information);
-
-                if (result == MessageBoxResult.Yes)
+            var builtins = FeaturesManager.GetBuiltins()
+                .Select(builtin =>
                 {
-                    TabControl.Items.Remove(TabControl.SelectedItem);
-                }
-            } 
-            else
-            {
-                MessageBox.Show("削除するタブが選択されていません", 
-                    HaruEditorConstant.APPLICATION_NAME, MessageBoxButton.OK, MessageBoxImage.Information);
-            }
+                    builtin.Click.Subscribe(() =>
+                    {
+                        TabControl.Items.Add(new TabItem()
+                        {
+                            IsSelected = true,
+                            Header = builtin.TabName,
+                            Content = builtin.Control
+                        });
+                    });
+
+                    return builtin;
+                })
+                .ToList();
+
+            vm.Builtins.AddRangeOnScheduler(builtins);
         }
 
-        private void AddTabItem(string header, Control control)
+        /// <summary>
+        /// プラグインを取得してリストにセット
+        /// </summary>
+        /// <param name="vm"></param>
+        private void SetPlugins(MainWindowViewModel vm)
         {
-            var tabItem = new TabItem()
-            {
-                Header = header,
-                Content = control
-            };
-            tabItem.IsSelected = true;
-            TabControl.Items.Add(tabItem);
+            var plugins = FeaturesManager.FindPlugins()
+                .Select(plugin =>
+                {
+                    plugin.Data.AddTab = new Action<string, UserControl>((name, content) =>
+                    {
+                        TabControl.Items.Add(new TabItem()
+                        {
+                            IsSelected = true,
+                            Header = name,
+                            Content = content
+                        });
+                    });
+
+                    if (plugin.Data.AutoRun) plugin.Data.Run();
+                    return plugin;
+                })
+                .Where(x => x.Data.Visible)
+                .ToList();
+            vm.Plugins.AddRangeOnScheduler(plugins);
         }
     }
 }

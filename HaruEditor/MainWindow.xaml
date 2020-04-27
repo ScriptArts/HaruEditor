@@ -9,6 +9,7 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
     xmlns:dockablz="clr-namespace:Dragablz.Dockablz;assembly=Dragablz"
+    xmlns:common="clr-namespace:HaruEditor.Common"
     prism:ViewModelLocator.AutoWireViewModel="True"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     Background="{DynamicResource MaterialDesignPaper}"
@@ -16,7 +17,7 @@
     TextElement.FontSize="14"
     FontFamily="{materialDesign:MaterialDesignFont}"
     mc:Ignorable="d"
-    Title="ハルの総合コマンドエディタ"
+    Title="{x:Static common:HaruEditorConstant.APPLICATION_NAME}"
     Height="768" Width="1024"
     Style="{StaticResource WindowStyle}">
     <WindowChrome.WindowChrome>
@@ -24,61 +25,11 @@
     </WindowChrome.WindowChrome>
     <Grid>
         <dockablz:Layout>
-            <dragablz:TabablzControl ConsolidateOrphanedItems="True" x:Name="TabControl">
+            <dragablz:TabablzControl x:Name="TabControl" ShowDefaultCloseButton="True">
                 <dragablz:TabablzControl.InterTabController>
-                    <dragablz:InterTabController />
+                    <dragablz:InterTabController/>
                 </dragablz:TabablzControl.InterTabController>
             </dragablz:TabablzControl>
         </dockablz:Layout>
-
-        <materialDesign:PopupBox
-            Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
-            PlacementMode="LeftAndAlignMiddles"
-            UnfurlOrientation="Horizontal"
-            ToolTip="コマンドの生成タブを追加します"
-            Margin="0 0 10 10"
-            Height="50"
-            Width="50"
-            Foreground="#FFFFFF"
-            Background="#34515E"
-            BorderBrush="#34515E"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom">
-            <StackPanel Orientation="Horizontal">
-                <Button
-                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                    Width="100"
-                    ToolTip="Giveコマンドの生成タブを追加します"
-                    Click="Give_Button_Click">
-                    Give
-                </Button>
-                <Button
-                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                    Width="100"
-                    ToolTip="Summonコマンドの生成タブを追加します"
-                    Click="Summon_Button_Click">
-                    Summon
-                </Button>
-                <Button
-                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                    Width="100"
-                    ToolTip="SetBlockコマンドの生成タブを追加します"
-                    Click="SetBlock_Button_Click">
-                    SetBlock
-                </Button>
-                <Button
-                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                    ToolTip="削除"
-                    Click="RemoveTab_Button_Click">
-                    <Path
-                        Data="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"
-                        Stretch="Uniform"
-                        Width="15"
-                        Height="15"
-                        Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}" />
-                </Button>
-            </StackPanel>
-        </materialDesign:PopupBox>
     </Grid>
-
 </Window>

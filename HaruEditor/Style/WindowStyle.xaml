@@ -2,6 +2,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:prism="http://prismlibrary.com/"
     xmlns:action="clr-namespace:HaruEditor.Actions"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     <Style x:Key="WindowStyle" TargetType="Window">
@@ -9,86 +10,175 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Window">
                     <Border x:Name="border" BorderThickness="1">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="30"/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <!-- タイトルバー -->
-                            <materialDesign:Card
-                                Grid.Row="0"
-                                Background="{DynamicResource MaterialDesignCardBackground}"
-                                materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                                materialDesign:ShadowAssist.ShadowEdges="Bottom"
-                                UniformCornerRadius="0"
-                                Panel.ZIndex="999">
-                                <Grid>
-                                    <TextBlock
-                                        Text="{Binding Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
-                                        VerticalAlignment="Center"
-                                        Margin="8,0,0,0"/>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <materialDesign:DrawerHost>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <!-- タイトルバー -->
+                                <materialDesign:Card
+                                    Grid.Row="0"
+                                    Background="{DynamicResource MaterialDesignCardBackground}"
+                                    materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                    materialDesign:ShadowAssist.ShadowEdges="Bottom"
+                                    UniformCornerRadius="0"
+                                    Panel.ZIndex="999">
+                                    <Grid>
+                                        <!-- 機能リストドロワーボタン -->
                                         <Button
                                             Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                                            Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                                            CommandParameter="{x:Static Dock.Left}"
                                             Background="Transparent"
                                             BorderThickness="0"
+                                            HorizontalAlignment="Left"
                                             materialDesign:ButtonAssist.CornerRadius="0"
                                             WindowChrome.IsHitTestVisibleInChrome="True">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="Click">
-                                                    <action:WindowMinimizeAction/>
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
                                             <Path
-                                                Data="M0,0 H12"
+                                                Data="M0,0 H12 M0,4 H12 M0,8 H12"
                                                 Stroke="AliceBlue"
                                                 StrokeThickness="2"
                                                 StrokeStartLineCap="Square"
                                                 StrokeEndLineCap="Square"
                                                 RenderOptions.EdgeMode="Aliased"/>
                                         </Button>
-                                        <Button
-                                            x:Name="maximize"
-                                            Style="{StaticResource MaterialDesignFlatDarkBgButton}"
-                                            Background="Transparent"
-                                            BorderThickness="0"
-                                            materialDesign:ButtonAssist.CornerRadius="0"
-                                            WindowChrome.IsHitTestVisibleInChrome="True">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="Click">
-                                                    <action:WindowMaximizeAction/>
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                            <Path
-                                                Data="M0,0 H12 V12 H0 Z"
-                                                Stroke="AliceBlue"
-                                                StrokeThickness="2"
-                                                RenderOptions.EdgeMode="Aliased"/>
-                                        </Button>
-                                        <Button
-                                            Style="{StaticResource MaterialDesignFlatDarkBgButton}"
-                                            Background="Transparent"
-                                            BorderThickness="0"
-                                            materialDesign:ButtonAssist.CornerRadius="0"
-                                            WindowChrome.IsHitTestVisibleInChrome="True">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="Click">
-                                                    <action:WindowCloseAction/>
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                            <Path
-                                                Data="M0,0 L12,12 M12,0 L0,12"
-                                                Stroke="AliceBlue"
-                                                StrokeThickness="2"
-                                                StrokeStartLineCap="Square"
-                                                StrokeEndLineCap="Square"
-                                                RenderOptions.EdgeMode="Aliased"/>
-                                        </Button>
+                                        <!-- タイトル -->
+                                        <TextBlock
+                                            Text="{TemplateBinding Title}"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Margin="8,0,0,0"/>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                            <!-- 最小化ボタン -->
+                                            <Button
+                                                Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                                                Background="Transparent"
+                                                BorderThickness="0"
+                                                materialDesign:ButtonAssist.CornerRadius="0"
+                                                WindowChrome.IsHitTestVisibleInChrome="True">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="Click">
+                                                        <action:WindowMinimizeAction/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                                <Path
+                                                    Data="M0,0 H12"
+                                                    Stroke="AliceBlue"
+                                                    StrokeThickness="2"
+                                                    StrokeStartLineCap="Square"
+                                                    StrokeEndLineCap="Square"
+                                                    RenderOptions.EdgeMode="Aliased"/>
+                                            </Button>
+                                            <!-- 最大化ボタン -->
+                                            <Button
+                                                x:Name="maximize"
+                                                Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                                                Background="Transparent"
+                                                BorderThickness="0"
+                                                materialDesign:ButtonAssist.CornerRadius="0"
+                                                WindowChrome.IsHitTestVisibleInChrome="True">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="Click">
+                                                        <action:WindowMaximizeAction/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                                <Path
+                                                    Data="M0,0 H12 V12 H0 Z"
+                                                    Stroke="AliceBlue"
+                                                    StrokeThickness="2"
+                                                    RenderOptions.EdgeMode="Aliased"/>
+                                            </Button>
+                                            <!-- 閉じるボタン -->
+                                            <Button
+                                                Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                                                Background="Transparent"
+                                                BorderThickness="0"
+                                                materialDesign:ButtonAssist.CornerRadius="0"
+                                                WindowChrome.IsHitTestVisibleInChrome="True">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="Click">
+                                                        <action:WindowCloseAction/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                                <Path
+                                                    Data="M0,0 L12,12 M12,0 L0,12"
+                                                    Stroke="AliceBlue"
+                                                    StrokeThickness="2"
+                                                    StrokeStartLineCap="Square"
+                                                    StrokeEndLineCap="Square"
+                                                    RenderOptions.EdgeMode="Aliased"/>
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+                                </materialDesign:Card>
+                                <ContentPresenter Grid.Row="1"/>
+                            </Grid>
+                            <materialDesign:DrawerHost.LeftDrawerContent>
+                                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                    <StackPanel MinWidth="200">
+                                        <!-- 機能リスト -->
+                                        <Expander
+                                            Header="機能"
+                                            IsExpanded="True"
+                                            WindowChrome.IsHitTestVisibleInChrome="True"
+                                            materialDesign:ExpanderAssist.DownHeaderPadding="8">
+                                            <ListBox
+                                                Grid.Row="1"
+                                                ItemsSource="{Binding Builtins}">
+                                                <ListBox.ItemContainerStyle>
+                                                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesignListBoxItem}">
+                                                        <Setter Property="Padding" Value="0"/>
+                                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                                    </Style>
+                                                </ListBox.ItemContainerStyle>
+                                                <ListBox.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Button
+                                                            Content="{Binding Name}"
+                                                            Style="{StaticResource MaterialDesignFlatButton}"
+                                                            HorizontalContentAlignment="Left"
+                                                            Padding="15,0"
+                                                            Foreground="#ddd"
+                                                            Command="{Binding Click}"
+                                                            ToolTip="{Binding Description}"/>
+                                                    </DataTemplate>
+                                                </ListBox.ItemTemplate>
+                                            </ListBox>
+                                        </Expander>
+                                        <!-- プラグインリスト -->
+                                        <Expander
+                                            Header="プラグイン"
+                                            IsExpanded="True"
+                                            WindowChrome.IsHitTestVisibleInChrome="True"
+                                            materialDesign:ExpanderAssist.DownHeaderPadding="8">
+                                            <ListBox
+                                                Grid.Row="1"
+                                                ItemsSource="{Binding Plugins}">
+                                                <ListBox.ItemContainerStyle>
+                                                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesignListBoxItem}">
+                                                        <Setter Property="Padding" Value="0"/>
+                                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                                    </Style>
+                                                </ListBox.ItemContainerStyle>
+                                                <ListBox.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Button
+                                                            Content="{Binding Data.PluginName}"
+                                                            Style="{StaticResource MaterialDesignFlatButton}"
+                                                            HorizontalContentAlignment="Left"
+                                                            Padding="15,0"
+                                                            Foreground="#ddd"
+                                                            Command="{Binding Click}"
+                                                            ToolTip="{Binding Data.PluginDescription}"/>
+                                                    </DataTemplate>
+                                                </ListBox.ItemTemplate>
+                                            </ListBox>
+                                        </Expander>
                                     </StackPanel>
-                                </Grid>
-                            </materialDesign:Card>
-                            <ContentPresenter Grid.Row="1"/>
-                        </Grid>
+                                </ScrollViewer>
+                            </materialDesign:DrawerHost.LeftDrawerContent>
+                        </materialDesign:DrawerHost>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="WindowState" Value="Normal">
